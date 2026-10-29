@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { api, setToken } from '../api'
-import { ROLE_LABEL } from '../lib/dates'
+import { api, setToken } from './api'
+import { ROLE_LABEL } from './dates'
 
 export default function Account({ user, forced = false, onChanged, onLogout }) {
   const [oldPassword, setOldPassword] = useState('')

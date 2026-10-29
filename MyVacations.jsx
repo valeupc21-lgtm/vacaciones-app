@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { api } from '../api'
-import { countDays, formatDate, formatRange, STATUS_LABEL, todayISO } from '../lib/dates'
+import { api } from './api'
+import { countDays, formatDate, formatRange, STATUS_LABEL, todayISO } from './dates'
 
 export default function MyVacations({ user }) {
   const [rows, setRows] = useState([])

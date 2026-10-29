@@ -8,7 +8,7 @@ Solicitud y aprobación de vacaciones con tres perfiles:
 | **Jefatura** | Ver las solicitudes de su equipo y aprobarlas o rechazarlas con comentario (avisa si coincide con otra persona del equipo). |
 | **RRHH** | Calendario mensual de vacaciones aprobadas, resolver cualquier solicitud pendiente y administrar personas (alta, rol, jefatura, días por año, restablecer clave). |
 
-**Cómo funciona:** los datos viven en una hoja de Google (pestañas `Usuarios` y `Solicitudes`). Un pequeño programa de Google (Apps Script, archivo `google-apps-script/Code.gs`) hace de servidor. La página web (React) se publica en Netlify y habla con ese programa.
+**Cómo funciona:** los datos viven en una hoja de Google (pestañas `Usuarios` y `Solicitudes`). Un pequeño programa de Google (Apps Script, archivo `Code.gs`) hace de servidor. La página web (React) se publica en Netlify y habla con ese programa.
 
 ---
 
@@ -21,7 +21,7 @@ Solicitud y aprobación de vacaciones con tres perfiles:
 ### Paso 2 · Pegar el servidor
 1. En la hoja: menú **Extensiones → Apps Script**. Se abre una pestaña nueva.
 2. Borra el texto que aparece (`function myFunction() {}`).
-3. Abre el archivo `google-apps-script/Code.gs`, copia **todo** su contenido y pégalo.
+3. Abre el archivo `Code.gs`, copia **todo** su contenido y pégalo.
 4. Pulsa el ícono del disquete (**Guardar proyecto**).
 
 ### Paso 3 · Preparar las hojas
@@ -109,16 +109,25 @@ Funciona bien para equipos pequeños y medianos (decenas a pocos cientos de pers
 ## Personalizaciones frecuentes
 | Quiero… | Dónde |
 |---|---|
-| Contar solo días hábiles (lun-vie) | `Code.gs`: función `daysBetween_`; y `countDays` en `src/lib/dates.js` |
+| Contar solo días hábiles (lun-vie) | `Code.gs`: función `daysBetween_`; y `countDays` en `dates.js` |
 | Otra zona horaria | `Code.gs`: constante `TZ` (arriba del todo) |
 | Más o menos días por defecto | Pestaña **Personas** (por persona); el valor 30 de las altas está en `setup` y `addUser_` |
 | Feriados o saldo acumulado de años anteriores | No incluido |
 
 ## Estructura
+Todo el proyecto está en una sola carpeta, sin subcarpetas (así es fácil de subir a GitHub arrastrando):
 ```
-google-apps-script/Code.gs   Servidor (se pega en Apps Script)
-src/api.js                   Conexión de la página con el servidor
-src/App.jsx                  Sesión y pestañas según el rol
-src/views/                   Pantallas (Mis vacaciones, Equipo, Calendario RRHH, Personas, Cuenta)
-netlify.toml                 Configuración de publicación
+Code.gs            Servidor (se pega en Apps Script; no lo usa Netlify)
+api.js             Conexión de la página con el servidor
+main.jsx           Arranque de la página
+App.jsx            Sesión y pestañas según el rol
+MyVacations.jsx    Colaborador: saldo y solicitudes
+Approvals.jsx      Jefatura / RRHH: aprobar y rechazar
+HRCalendar.jsx     RRHH: calendario de vacaciones aprobadas
+People.jsx         RRHH: altas, roles, jefaturas, días por año
+Account.jsx        Cambio de contraseña
+Auth.jsx           Inicio de sesión
+dates.js           Funciones de fechas
+styles.css         Estilos
+netlify.toml       Configuración de publicación
 ```

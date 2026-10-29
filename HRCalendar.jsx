@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { api } from '../api'
-import { daysInMonth, formatDate, formatRange, MONTHS, toISO, todayISO, weekdayMonFirst } from '../lib/dates'
+import { api } from './api'
+import { daysInMonth, formatDate, formatRange, MONTHS, toISO, todayISO, weekdayMonFirst } from './dates'
 
 const WEEKDAYS = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom']
 const MAX_CHIPS = 3

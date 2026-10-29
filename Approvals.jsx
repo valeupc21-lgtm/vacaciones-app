@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { api } from '../api'
-import { formatDate, formatRange, STATUS_LABEL } from '../lib/dates'
+import { api } from './api'
+import { formatDate, formatRange, STATUS_LABEL } from './dates'
 
 export default function Approvals({ user }) {
   const [all, setAll] = useState([])

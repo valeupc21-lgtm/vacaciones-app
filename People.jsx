@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import { api } from '../api'
-import { ROLE_LABEL } from '../lib/dates'
+import { api } from './api'
+import { ROLE_LABEL } from './dates'
 
 const ROLES = Object.keys(ROLE_LABEL)
 
